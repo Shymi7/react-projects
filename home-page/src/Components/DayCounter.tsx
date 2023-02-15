@@ -1,12 +1,9 @@
-import {format, formatDistanceStrict, parse} from 'date-fns'
+import {format, formatDistanceStrict, isBefore, parse} from 'date-fns'
 import {ChangeEvent, useEffect, useState} from "react";
 import classNames from "classnames";
 import {pl} from 'date-fns/locale'
 import {AnimatePresence, motion} from 'framer-motion';
 import {Sliders} from "react-feather";
-
-// import plLocale from ''
-
 
 export function DayCounter() {
     const [inputToggle, setInputToggle] = useState(false);
@@ -16,7 +13,6 @@ export function DayCounter() {
 
     const [datesArray, setDatesArray] = useState<string[]>([]);
 
-
     const localStorageKey = 'dayCounter-datesArray';
 
     useEffect(() => { //called only once
@@ -24,7 +20,8 @@ export function DayCounter() {
     }, [])
 
     useEffect(() => { //called multiple times, on component refresh
-        if (addDateInput === '' || !isNaN(parse(addDateInput, 'dd.MM.yyyy', new Date()).getDate())) {
+        const curDate = parse(addDateInput, 'dd.MM.yyyy', new Date());
+        if (addDateInput === '' || (!isNaN(curDate.getDate())) && isBefore(new Date(), curDate)) {
             setIsInputValid(true);
         } else {
             setIsInputValid(false);
@@ -97,7 +94,7 @@ export function DayCounter() {
                             inputToggle &&
                             <motion.input
                                 className={classNames(
-                                    'rounded text-default-900 w-1/2 p-2 align-middle',
+                                    'rounded text-default-900 p-2 w-1/2 align-middle',
                                     'placeholder:text-default-700 focus:outline-0',
                                     isInputValid ? 'bg-default-50' : 'bg-yellow-200',
                                 )}
@@ -106,21 +103,18 @@ export function DayCounter() {
                                     setAddDateInput(e.target.value);
                                 }}
                                 initial={{
-                                    width: 0,
                                     opacity: 0,
                                 }}
                                 animate={{
-                                    width: "auto",
                                     opacity: 1,
                                     transition: {
-                                        duration: 1
+                                        duration: 0.5
                                     }
                                 }}
                                 exit={{
-                                    width: 0,
                                     opacity: 0,
                                     transition: {
-                                        duration: 1
+                                        duration: 0.5
                                     }
                                 }}
                             />
@@ -130,7 +124,7 @@ export function DayCounter() {
 
                     <AnimatePresence>
                         {
-                            isInputValid && addDateInput !== '' &&
+                            (isInputValid && inputToggle && addDateInput !== '') &&
                             <motion.div
                                 onClick={() => {
                                     addDateToLocalStorage(addDateInput)
@@ -146,11 +140,14 @@ export function DayCounter() {
                                 animate={{
                                     opacity: 1,
                                     transition: {
-                                        duration: 1
+                                        duration: 0.5
                                     }
                                 }}
                                 exit={{
                                     opacity: 0,
+                                    transition: {
+                                        duration: 0.5
+                                    }
                                 }}
                             >
                                 +
@@ -166,6 +163,8 @@ export function DayCounter() {
                 className={'absolute bottom-3 right-3'}
                 onClick={() => {
                     setInputToggle(!inputToggle);
+                    if (inputToggle)
+                        setAddDateInput('');
                 }}
             >
                 <Sliders/>
