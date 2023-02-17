@@ -2,6 +2,7 @@ import './App.css'
 import {Tile} from "./Components/Tile";
 import {DayCounter} from "./Components/DayCounter";
 import {SunCalendar} from "./Components/SunCalendar";
+import {News} from "./Components/News";
 
 function App() {
   return (
@@ -11,6 +12,9 @@ function App() {
         </Tile>
         <Tile width={1} height={1}>
             <SunCalendar/>
+        </Tile>
+        <Tile width={1} height={1}>
+            <News/>
         </Tile>
     </div>
   )
