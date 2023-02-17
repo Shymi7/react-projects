@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+
+body{
+  font-family: Inter, sans-serif;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.logo{
+  display: flex;
+  justify-content: start;
+  color: #75d5fc;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.nav-items{
+  list-style: none;
+  display: flex;
+
+
+}
+
+.nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: aliceblue;
+  font-weight: 700;
+  /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+
+  background-color: #1f1f1f;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 0;
+}
+
+li::marker{
+  color:#75d5fc;
+  font-size: 1.5rem;
+}
+
+.nav-items > li{
+  padding: 15px;
+}
+
+.mainContent{
+  text-align: left;
+  color: #ffffff;
+  padding: 2em 0 2em 0;
+
+  height:90%;
+
+
+  background-color: #353535;
+}
+
+
+p, h1 {
+  margin: 0;
+}
+
+.mainContent > h1{
+
+  text-indent: 8%;
+}
+
+.mainContent > ul{
+  list-style: disc;
+  
+}
+
+.mainContent > li {
+  line-height: 200px;
+}
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
