@@ -65,7 +65,13 @@ export function DayCounter() {
             <div key={index} className={'p-2 text-xl'}>
                 <span>Jeszcze tylko </span>
                 <span className={'font-bold'}>
-                    {formatDistanceStrict(date, new Date(), {unit: 'day', locale: pl})}
+                    {
+                        formatDistanceStrict(
+                            date,
+                            new Date(),
+                            {unit: 'day', locale: pl, roundingMethod: 'floor'}
+                        )
+                    }
                 </span>
                 <span> do </span>
                 <span>{format(date, 'd MMMM yyyy', {locale: pl})}</span>
