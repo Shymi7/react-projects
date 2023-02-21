@@ -24,7 +24,7 @@ export function Tile(props: PropsWithChildren<SizeProps>) {
                 height: height * heightMultiplier + 'vh'
             }}>
             <div className={classNames(
-                'flex flex-col justify-center items-center w-fit h-full',
+                'flex flex-col justify-center items-center w-full h-full',
                 // toggleSizeControl ? 'w-11/12' : 'w-full',
                 // toggleSizeControl ? 'h-11/12' : 'h-full',
             )}>

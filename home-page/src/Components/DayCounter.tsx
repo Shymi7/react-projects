@@ -3,7 +3,7 @@ import {ChangeEvent, useEffect, useState} from "react";
 import classNames from "classnames";
 import {pl} from 'date-fns/locale'
 import {AnimatePresence, motion} from 'framer-motion';
-import {Sliders} from "react-feather";
+import {Sliders, XSquare} from "react-feather";
 
 export function DayCounter() {
     const [inputToggle, setInputToggle] = useState(false);
@@ -63,8 +63,8 @@ export function DayCounter() {
 
         return (
             <div key={index} className={'p-2 text-xl'}>
-                <span>Jeszcze tylko </span>
-                <span className={'font-bold'}>
+                <span className={'align-middle'}>Jeszcze tylko </span>
+                <span className={'font-bold align-middle'}>
                     {
                         formatDistanceStrict(
                             date,
@@ -73,15 +73,15 @@ export function DayCounter() {
                         )
                     }
                 </span>
-                <span> do </span>
-                <span>{format(date, 'd MMMM yyyy', {locale: pl})}</span>
+                <span className={'align-middle'}> do </span>
+                <span className={'align-middle'}>{format(date, 'd MMMM yyyy', {locale: pl})}</span>
                 <button
                     onClick={() => {
                         deleteDateFromLocalStorage(index)
                     }}
-                    className={' py-0 px-2 mx-2 rounded bg-default-50 text-default-900 font-bold '}
+                    className={'align-middle py-0 px-0 mx-3 bg-transparent text-default-900 '}
                 >
-                    -
+                    <XSquare color={'white'}/>
                 </button>
 
             </div>
